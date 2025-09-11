@@ -1,10 +1,15 @@
 import express from 'express'
 
-const app = express()
+const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Hello World')
-})
+app.use(express.json()); //habilita que o express trabalhe com JSON
+const users = [];
+
+app.post("/users", (req, res) => {
+    const body = req.body;
+    users.push(body);
+    res.status(201).json(users);
+});
 
 app.listen(3000, () => {
     console.log(`Server is running in port 3000`);

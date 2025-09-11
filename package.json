@@ -1,0 +1,23 @@
+{
+  "name": "community-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedooor013/community_library.git"
+  },
+  "author": "Pedro Lopes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedooor013/community_library/issues"
+  },
+  "homepage": "https://github.com/pedooor013/community_library#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

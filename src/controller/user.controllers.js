@@ -7,7 +7,7 @@ async function createUserController(req, res){
         const user = userService.createUserService(newUser);
         res.status(201).send({user});
     }catch (err){
-        return res.status(400).send(e.message);
+        return res.status(400).send(err.message);
     }
 }
 export default{

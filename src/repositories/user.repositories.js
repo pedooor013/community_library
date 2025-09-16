@@ -36,7 +36,8 @@ async function findUserByEmailRepository(email){
                 SELECT id, username, email, avatar 
                 FROM users
                 WHERE email = ?
-            `, [email], (err, row) =>{
+            `, [email], 
+            (err, row) =>{
                 if(err){
                     rej(err);
                 }else{
@@ -51,7 +52,8 @@ async function findUserByEmailRepository(email){
                 SELECT id, username, email, avatar 
                 FROM users
                 WHERE id = ?
-            `, [id], (err, row) =>{
+            `, [id], 
+            (err, row) =>{
                 if(err){
                     rej(err);
                 }else{
@@ -76,6 +78,27 @@ function findAllUserRepository(){
     })
 }
 
+async function updateUserRepository(id, user){
+    return new Promise((res, rej) =>{
+        const {username, email, password, avatar} = user;
+        db.run(`
+                UPDATE users SET 
+                    username = ?,
+                    email = ?,
+                    password = ?,
+                    avatar = ?
+                WHERE id = ?
+            `, [username, email, password, avatar, id], 
+            (err) =>{                      
+                if(err){
+                    rej(err);
+                }else{
+                    res({ id, ...user });
+                }
+            })
+    })
+}
+
 
 
 
@@ -83,5 +106,6 @@ export default{
     createUserRepository,
     findUserByEmailRepository,
     findUserByIdRepository,
-    findAllUserRepository
+    findAllUserRepository,
+    updateUserRepository
 }

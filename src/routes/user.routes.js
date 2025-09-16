@@ -11,6 +11,7 @@ router.get("/users", userControllers.findAllUserController);
 
 router.get("/users/:id", userControllers.findUserByIdController);
 
+router.put("/users/:id", validate(userSchema) ,userControllers.updateUserController);
 
 
 export default router;

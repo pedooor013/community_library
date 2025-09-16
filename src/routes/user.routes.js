@@ -7,4 +7,6 @@ const router = Router();
 
 router.post('/users', validate(userSchema) , userControllers.createUserController);
 
+router.get("/users", userControllers.findAllUserController);
+
 export default router;

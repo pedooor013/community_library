@@ -45,8 +45,43 @@ async function findUserByEmailRepository(email){
             })
     })
 }
+    async function findUserByIdRepository(id){
+    return new Promise((res, rej) =>{
+        db.get(`
+                SELECT id, username, email, avatar 
+                FROM users
+                WHERE id = ?
+            `, [id], (err, row) =>{
+                if(err){
+                    rej(err);
+                }else{
+                    res(row);
+                }
+            })
+    })
+}
+
+function findAllUserRepository(){
+    return new Promise((res, rej) =>{
+        db.all(`
+                SELECT id, username, email, avatar FROM users
+            `, [],  
+            (err, rows) =>{
+                if(err){
+                    rej(err);
+                }else{
+                    res(rows);
+                }
+            });
+    })
+}
+
+
+
 
 export default{
     createUserRepository,
-    findUserByEmailRepository
+    findUserByEmailRepository,
+    findUserByIdRepository,
+    findAllUserRepository
 }

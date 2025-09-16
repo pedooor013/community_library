@@ -9,4 +9,8 @@ router.post('/users', validate(userSchema) , userControllers.createUserControlle
 
 router.get("/users", userControllers.findAllUserController);
 
+router.get("/users/:id", userControllers.findUserByIdController);
+
+
+
 export default router;

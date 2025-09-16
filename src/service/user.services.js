@@ -29,5 +29,6 @@ async function findUserByIdService(id){
 
 export default {
     createUserService,
-    findAllUserService
+    findAllUserService,
+    findUserByIdService
 }

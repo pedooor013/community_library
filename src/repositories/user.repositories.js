@@ -100,9 +100,6 @@ async function updateUserRepository(id, user){
         
         values.push(id)
 
-        console.log(`QUERY: ${query}`)
-        console.log(`VALUES: ${values}`)
-
         db.run(query, values, (err) =>{
             if(err){
                 rej(err);

@@ -81,21 +81,36 @@ function findAllUserRepository(){
 async function updateUserRepository(id, user){
     return new Promise((res, rej) =>{
         const {username, email, password, avatar} = user;
-        db.run(`
-                UPDATE users SET 
-                    username = ?,
-                    email = ?,
-                    password = ?,
-                    avatar = ?
-                WHERE id = ?
-            `, [username, email, password, avatar, id], 
-            (err) =>{                      
-                if(err){
-                    rej(err);
-                }else{
-                    res({ id, ...user });
-                }
-            })
+        const fields = ['username', 'email', 'password', 'avatar'];
+
+        let query = "UPDATE users SET";
+        const values = []
+
+        fields.forEach((field)=>{
+            if(user[field] != undefined){
+                query += ` ${field} = ?,`;
+                values.push(user[field])
+            }
+        });
+
+        query = query.slice(0, -1);
+
+        query += " WHERE id = ?";
+
+        
+        values.push(id)
+
+        console.log(`QUERY: ${query}`)
+        console.log(`VALUES: ${values}`)
+
+        db.run(query, values, (err) =>{
+            if(err){
+                rej(err);
+            }else{
+                res({...user, id});
+            }
+        })
+
     })
 }
 

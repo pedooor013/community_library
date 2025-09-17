@@ -1,54 +1,63 @@
-import userService from '../service/user.services.js';
+    import userService from "../service/user.services.js";
 
-async function createUserController(req, res){
+    async function createUserController(req, res) {
     const newUser = req.body;
-    
-    try{
+
+    try {
         const user = await userService.createUserService(newUser);
-        res.status(201).send({user});
-    }catch(err){
-        res.status(400).send(err.message);
+        res.status(201).json({ user });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
     }
-}
+    }
 
-async function findAllUserController(req, res){
-    try{
+    async function findAllUserController(req, res) {
+    try {
         const users = await userService.findAllUserService();
-        res.send({ users })
-    }catch(err){
-        return res.status(400).send(err.message);
+        res.json({ users });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
     }
-}
+    }
 
-async function findUserByIdController(req, res){
-    const {id} = req.params;
-    
-    try{
+    async function findUserByIdController(req, res) {
+    const { id } = req.params;
+
+    try {
         const user = await userService.findUserByIdService(id);
-        res.send({ user });
-    }catch(err){
-        return res.status(404).send(err.message);
+        res.json({ user });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
     }
-    
-}
+    }
 
-async function updateUserController(req, res){
-    const {id} = req.params;
+    async function updateUserController(req, res) {
+    const { id } = req.params;
     const newUser = req.body;
-    
+
     try {
         const user = await userService.updateUserService(newUser, id);
-        res.send({user});
+        res.json({ user });
     } catch (err) {
-        return res.status(400).send(err.message);
+        res.status(400).json({ error: err.message });
+    }
     }
 
-}
+    async function deleteUserController(req, res) {
+    const { id } = req.params;
 
+    try {
+        const message = await userService.deleteUserService(id);
+        res.json({ message });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+    }
 
-export default{
+    export default {
     createUserController,
     findAllUserController,
     findUserByIdController,
-    updateUserController
-}
+    updateUserController,
+    deleteUserController
+    };

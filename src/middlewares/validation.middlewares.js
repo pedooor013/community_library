@@ -4,8 +4,8 @@ const validate = (schema) => (req, res, next) => {
     try{
         schema.parse(req.body);
         next();
-    }catch(e){
-        res.status(400).json({error: e.error});
+    }catch(error){
+        res.status(400).json({ message: error.message});
     }
 }
 
@@ -14,8 +14,8 @@ const validateUserID = (req, res, next) =>{
         const userId = +req.params.id;
         userIdSchema.parse({userId: userId});
         next();
-    }catch(e){
-        res.status(400).json({error: e.errors});
+    }catch(error){
+        res.status(400).json({message: error.message});
     }
 }
 

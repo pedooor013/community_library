@@ -4,10 +4,10 @@
     const newUser = req.body;
 
     try {
-        const user = await userService.createUserService(newUser);
-        res.status(201).json({ user });
-    } catch (err) {
-        res.status(400).json({ error: err.message });
+        const token = await userService.createUserService(newUser);
+        res.status(201).json({ token  });
+    } catch (error) {
+        res.status(400).send({ message: error.message });
     }
     }
 
@@ -15,8 +15,8 @@
     try {
         const users = await userService.findAllUserService();
         res.json({ users });
-    } catch (err) {
-        res.status(400).json({ error: err.message });
+    } catch (error) {
+        res.status(400).send({ message: error.message });
     }
     }
 
@@ -26,8 +26,8 @@
     try {
         const user = await userService.findUserByIdService(id);
         res.json({ user });
-    } catch (err) {
-        res.status(400).json({ error: err.message });
+    } catch (error) {
+        res.status(400).send({ message: error.message });
     }
     }
 
@@ -38,8 +38,8 @@
     try {
         const user = await userService.updateUserService(newUser, id);
         res.json({ user });
-    } catch (err) {
-        res.status(400).json({ error: err.message });
+    } catch (error) {
+        res.status(400).send({ message: error.message });
     }
     }
 
@@ -49,8 +49,8 @@
     try {
         const message = await userService.deleteUserService(id);
         res.json({ message });
-    } catch (err) {
-        res.status(400).json({ error: err.message });
+    } catch (error) {
+        res.status(400).send({ message: error.message });
     }
     }
 

@@ -1,5 +1,5 @@
     import userService from "../service/user.services.js";
-    import {authService} from "../service/auth.service.js"
+    import {loginService} from "../service/auth.service.js"
 
     async function createUserController(req, res) {
     const newUser = req.body;
@@ -16,7 +16,7 @@
     const {email, password} = req.body;
 
     try {
-        const token = await authService.loginService(email, password);
+        const token = await loginService(email, password);
         res.status(201).json({ token  });
     } catch (error) {
         res.status(400).send({ message: error.message });

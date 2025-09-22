@@ -17,4 +17,4 @@ router.patch("/users/:id", validateUserID ,userControllers.updateUserController)
 
 router.delete("/users/:id", validateUserID ,userControllers.deleteUserController)
 
-export default router;
+export default router;  

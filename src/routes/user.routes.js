@@ -7,6 +7,8 @@ const router = Router();
 
 router.post('/users', validate(userSchema) , userControllers.createUserController);
 
+router.post('/users/login', userControllers.loginUserController)
+
 router.get("/users", userControllers.findAllUserController);
 
 router.get("/users/:id", validateUserID, userControllers.findUserByIdController);

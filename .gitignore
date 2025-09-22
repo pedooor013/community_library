@@ -1,3 +1,23 @@
 /node_modules/
 .env
 .sqlite
+node_modules/
+npm-debug.log
+.npm/
+
+# VSCode
+.vscode/
+
+# Cache
+*.log
+*.cache
+.cache/
+.tmp/
+temp/
+
+# Sistema
+Thumbs.db
+.DS_Store
+
+# .NET
+.dotnet/

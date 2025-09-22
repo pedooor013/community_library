@@ -33,7 +33,7 @@ function createUserRepository(newUser){
 async function findUserByEmailRepository(email){
     return new Promise((res, rej) =>{
         db.get(`
-                SELECT id, username, email, avatar 
+                SELECT id, username, email, avatar, password 
                 FROM users
                 WHERE email = ?
             `, [email], 

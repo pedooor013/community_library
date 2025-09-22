@@ -7,4 +7,4 @@ function generateJWT(id){
 }
 
 
-export { generateJWT };
+export { generateJWT };  

@@ -93,12 +93,27 @@ db.run(`
         })
     }
 
+    function searchBookRepository(search){
+        return Promise((res, rej) =>{
+            db.all(`
+                SELECT * FROM books WHERE title LIKE ? OR author LIKE ?
+                `, [`%${search}%`, `%${search}%`], (err, rows) =>{
+                    if(err){
+                        rej(err);
+                    }else{
+                        res(rows);
+                    }
+                });
+        });
+    }
+
     export default {
         createBookRepository,
         findAllBooksRepository,
         findBookByIdRepository,
         updateBookRepository,
-        deleteBookRepository
+        deleteBookRepository,
+        searchBookRepository
         
 
     }

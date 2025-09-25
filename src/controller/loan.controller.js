@@ -1,32 +1,30 @@
-import loanService from "../service/loan.service.js";
+    import loanService from "../service/loan.service.js";
 
-async function createLoanController(req,res){
+    async function createLoanController(req, res) {
     const { bookId, dueDate } = req.body;
-
     const userId = req.userId;
 
-    try{
+    try {
         const createdLoan = await loanService.createLoanService(
-            userId,
-            bookId,
-            dueDate
+        userId,
+        bookId,
+        dueDate
         );
         res.status(201).send(createdLoan);
-    }catch(err){
-        res.status(400).json(err); 
+    } catch (error) {
+        return res.status(400).send(error.message);
     }
-}
-
-async function findAllLoansController(req,res){
-    try{
+    }
+    async function findAllLoansController(req, res) {
+    try {
         const loans = await loanService.findAllLoansRepository();
         res.send(loans);
-    }catch(err){
+    } catch (err) {
         res.status(404).send(err.message);
     }
-}
+    }
 
-export default{
+    export default {
     createLoanController,
-    findAllLoansController
-}
+    findAllLoansController,
+    };

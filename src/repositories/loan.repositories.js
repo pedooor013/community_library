@@ -9,20 +9,20 @@ db.run(`CREATE TABLE IF NOT EXISTS loans(
     FOREIGN KEY (bookId) REFERENCES books(id)
     )`);
 
-    function createLoanRepository(userId, bookId, dueDate){
-        return new Promise((rej, res) =>{
-            db.run(
-                `INSERT INTO loans (userId, bookId, dueDate) VALUES (?, ?, ?)`,
-                [userId, bookId, dueDate],
-                function (err){
-                    if(err){
-                        rej(err);
-                    }else{
-                        res({id: this.lastID, userId, bookId});
-                    }
-                }
-            )
-        })
+    function createLoanRepository(userId, bookId, dueDate) {
+    return new Promise((resolve, reject) => {
+        db.run(
+        `INSERT INTO loans (userId, bookId, dueDate) VALUES (?, ?, ?)`,
+        [userId, bookId, dueDate],
+        function (err) {
+            if (err) {
+            reject(err);
+            } else {
+            resolve({ id: this.lastID, userId, bookId });
+            }
+        }
+        );
+    });
     }
 
     function findAllLoansRepository(){

@@ -94,7 +94,7 @@ db.run(`
     }
 
     function searchBookRepository(search){
-        return Promise((res, rej) =>{
+        return new Promise((res, rej) =>{
             db.all(`
                 SELECT * FROM books WHERE title LIKE ? OR author LIKE ?
                 `, [`%${search}%`, `%${search}%`], (err, rows) =>{

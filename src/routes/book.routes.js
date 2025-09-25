@@ -16,6 +16,9 @@ router.post("/books",
     validate(bookSchema), 
     bookController.createBookController);
 
+    router.get("/books/search",
+        bookController.searchBookController);
+
     router.get("/books/:id",
     validateBookId, 
     bookController.findBookByIdController);
@@ -27,6 +30,7 @@ router.post("/books",
     router.delete("/books/:id",
     validateBookId, 
     bookController.deleteBookController);
+
 
 
 

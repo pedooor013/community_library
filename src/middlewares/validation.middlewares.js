@@ -1,4 +1,5 @@
 import { userIdSchema } from "../schema/user.schema.js";
+import { bookIdSchema } from "../schema/book.schema.js";
 
 const validate = (schema) => (req, res, next) => {
     try{
@@ -19,4 +20,14 @@ const validateUserID = (req, res, next) =>{
     }
 }
 
-export{validate, validateUserID}
+
+const validateBookId  = (req, res, next) =>{
+    try{
+        bookIdSchema.parse({bookId: +req.params.id});
+        next();
+    }catch(error){
+        res.status(400).json({message: error.message});
+}
+}
+
+export{validate, validateUserID, validateBookId }

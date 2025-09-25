@@ -39,9 +39,66 @@ db.run(`
         });
     }
 
+    function findBookByIdRepository(bookId){
+        return new Promise((res, rej) =>{
+            db.get(`SELECT * FROM books WHERE id = ?`, [bookId], (err, row)=>{
+                if(err){
+                    rej(err);
+                }else{
+                    res(row);
+                }
+            })
+        })
+    }
+
+    function updateBookRepository(updatedBook, bookId){
+        return new Promise((res, rej) =>{
+            const fields = ['title', 'author', 'userId'];
+
+            let query = 'UPDATE books SET ';                                                        
+            const values = [];
+
+            fields.forEach(field =>{
+                if(updatedBook[field] !== undefined){
+                    query += ` ${field} = ?,`;
+                    values.push(updatedBook[field]) 
+                }   
+            })
+
+            query = query.slice(0, -1);
+
+            query += " WHERE id = ?";
+            console.log(query)
+            values.push(bookId);
+
+            db.run(query, values , function (err){
+                if(err){
+                    rej(err);
+                }else{
+                    res({id: bookId, ...updatedBook})
+                }
+            })
+        })
+    }
+
+    function deleteBookRepository(bookId){
+        return new Promise((res, rej) =>{
+            db.run(`DELETE FROM books WHERE id = ?`, [bookId], function(err){
+                if(err){
+                    rej(err);
+                }else{
+                    res({message: "Book deleted successfully", bookId})
+                }
+            })
+        })
+    }
 
     export default {
         createBookRepository,
-        findAllBooksRepository 
+        findAllBooksRepository,
+        findBookByIdRepository,
+        updateBookRepository,
+        deleteBookRepository
+        
 
     }

@@ -5,5 +5,8 @@ const bookSchema = z.object({
     author: z.string().min(1, 'Author is required'),
 });
 
+const bookIdSchema = z.object({
+    bookId: z.number().int().positive("Book ID must be a positive integer")
+})
 
-export { bookSchema }; 
+export { bookSchema, bookIdSchema }; 

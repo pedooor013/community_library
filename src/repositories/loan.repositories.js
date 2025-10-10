@@ -40,7 +40,36 @@ db.run(`CREATE TABLE IF NOT EXISTS loans(
         })
     }
 
+    function findLoanByIdRepostitoy(loanId){
+        return new Promise((res, rej) =>{
+            db.get(`
+                SELECT * FROM loans
+                WHERE id = ?
+                `, [loanId], (err, row) =>{
+                    if(err){
+                        rej(err)
+                    }else{
+                        res(row);
+                    }
+                })
+        })
+    };
+
+    function deleteLoanRepository(loanId){
+        return new Promise((res, rej) =>{
+            db.run(`DELETE FROM loans WHERE id = ?`, [loanId], function(err) {
+                if(err){
+                    rej(err);
+                }else{
+                    res({message: "Loan deleted succesfully ", loanId});
+                }
+            })
+        })
+    };
+
     export default {
         createLoanRepository,
-        findAllLoansRepository
+        findAllLoansRepository,
+        findLoanByIdRepostitoy,
+        deleteLoanRepository
     }

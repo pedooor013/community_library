@@ -6,12 +6,28 @@ async function createLoanService(userId, bookId, dueDate) {
     return createdLoan;
 }
 
-async function findAllLoansRepository(){
-    const loans = await loanRepositories.findAllLoansRepository();
+async function findAllLoansService(){
+    const loans = await loanRepository.findAllLoansRepository();
     return loans;
+}
+
+async function findLoanByIdService(loanId){
+    const loan = await loanRepository.findLoanByIdRepostitoy(loanId);
+    if(!loan) throw new Error ({ message: "Loan not found"});
+    return loan;
+}
+
+async function deleteLoanService(loanId, userId){
+    const loan = await loanRepository.findLoanByIdRepostitoy(loanId);
+    if(!loan) throw new Error ({ message: "Loan not found"});
+    if(loan.userID !== userId) throw new Error ("Unauthorized");
+    const response = await loanRepository.deleteLoanRepository(loanId);
+    return response;
 }
 
 export default {
     createLoanService,
-    findAllLoansRepository
+    findAllLoansService,
+    deleteLoanService,
+    findLoanByIdService
 }

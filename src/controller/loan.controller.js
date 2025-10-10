@@ -15,16 +15,41 @@
         return res.status(400).send(error.message);
     }
     }
+
     async function findAllLoansController(req, res) {
     try {
-        const loans = await loanService.findAllLoansRepository();
+        const loans = await loanService.findAllLoansService();
         res.send(loans);
     } catch (err) {
         res.status(404).send(err.message);
     }
     }
 
+    async function findLoanByIdController(req, res){
+        const loanId = req.params.id;
+
+        try{
+            const loan = await loanService.findLoanByIdService(loanId);
+            console.log({loan});
+            return res.send(loan);    
+        }catch(err){
+            return res.status(400).send(err.message);
+        }
+    }
+
+    async function deleteLoanController(req, res){
+        const loanId = req.params.id;
+        const userId = req.userId;
+        try{
+            const response = await loanService.deleteLoanService(loanId, userId);
+            return res.send(response);
+        }catch(err){
+            return res.status(400).send(err.message);
+        }
+    }
     export default {
     createLoanController,
     findAllLoansController,
+    deleteLoanController,
+    findLoanByIdController
     };

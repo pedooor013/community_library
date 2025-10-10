@@ -9,7 +9,7 @@ router.post("/loans",
     loanController.createLoanController);
 
 router.get("/loans", loanController.findAllLoansController);
-router.get("/loans/:id", validateLoanId ,loanController.findAllLoansController);
+router.get("/loans/:id", validateLoanId ,loanController.findLoanByIdController);
 router.delete("/loans/:id", validateLoanId ,loanController.deleteLoanController);
 
 

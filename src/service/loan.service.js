@@ -20,7 +20,8 @@ async function findLoanByIdService(loanId){
 async function deleteLoanService(loanId, userId){
     const loan = await loanRepository.findLoanByIdRepostitoy(loanId);
     if(!loan) throw new Error ({ message: "Loan not found"});
-    if(loan.userID !== userId) throw new Error ("Unauthorized");
+    const userLoanId = loan.userId;
+    if(loan.userId !== userId) throw new Error ("Unauthorized");
     const response = await loanRepository.deleteLoanRepository(loanId);
     return response;
 }

@@ -30,7 +30,6 @@
 
         try{
             const loan = await loanService.findLoanByIdService(loanId);
-            console.log({loan});
             return res.send(loan);    
         }catch(err){
             return res.status(400).send(err.message);

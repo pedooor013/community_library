@@ -12,7 +12,7 @@ function generateJWT(id){
 
 async function loginService(email, password){
     const user = await userRepository.findUserByEmailRepository(email);
-    if(!user) throw new Error('Invalid user!');
+    if(!user) throw new Error('Invalid user!');8
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if(!isPasswordValid) throw new Error ('Invalid user!');
     const token = generateJWT(user.id);

@@ -8,7 +8,7 @@
         const token = await userService.createUserService(newUser);
         res.status(201).json({ token  });
     } catch (error) {
-        res.status(400).send({ message: error.message });
+        res.status(400).send({ message: "Erro ao cadastrar o usuário" });
     }
     }
 

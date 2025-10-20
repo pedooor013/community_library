@@ -10,6 +10,6 @@ const loanSchema = z.object({
 
 const loanIdSchema = z.object({
     loanId: z.number().int().positive("Loan ID must be a posive integer"),
-});
+});  
 
 export { loanSchema, loanIdSchema }

@@ -11,9 +11,9 @@ const transporter = nodemailer.createTransport({
 
 function sendEmail(email, bookTittle, dueDate){
     const mailOptions = {
-        from: '',
+        from: process.env.EMAIL,
         to: email,
-        subject: 'Reminder: Book Due Date Approaching',
+        subject: "Lembrete: Periodo de Emprestimo está acabando",
         html:` <div style="font-family: Arial, sans-serif; color: #333; font-size: 16px;"> 
         <h2>Lembrete da Biblioteca Comunitária</h2>
         <p>Olá,</p> <p>Este é um lembrete para a devolução do livro "${bookTittle}".</p>

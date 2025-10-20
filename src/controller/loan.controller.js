@@ -1,4 +1,5 @@
     import loanService from "../service/loan.service.js";
+    import bookRepositories from "../repositories/book.repositories.js";
 
     async function createLoanController(req, res) {
     const { bookId, dueDate } = req.body;

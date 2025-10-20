@@ -10,7 +10,7 @@ async function createBookService(newBook, userId){
 }
 
 async function findAllBooksService(){
-    const books = await bookRepository.findAllBooksRepository();
+    const books = await bookRepository.findAllBookcsRepository();
     return books;
 }
 

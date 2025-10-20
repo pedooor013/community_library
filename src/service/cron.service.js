@@ -5,7 +5,7 @@ import loanRepository from "../repositories/loan.repositories.js"
 import userRepository from "../repositories/user.repositories.js"
 import bookRepository from "../repositories/book.repositories.js"
 
-cron.schedule("54 * * * * ", async () =>{    
+cron.schedule("0 9 * * * ", async () =>{    
     console.log("Running daily job to check for due dates")
 
     const loans = await loanRepository.findAllLoansRepository();

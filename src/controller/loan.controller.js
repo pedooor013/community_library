@@ -6,6 +6,8 @@
     const userId = req.userId;
 
     try {
+        const bookExist = await bookRepositories.findBookByIdRepository(bookId);
+        if(!bookExist) throw new Error("Book not found");
         const createdLoan = await loanService.createLoanService(
         userId,
         bookId,

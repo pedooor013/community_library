@@ -28,7 +28,7 @@ db.run(`CREATE TABLE IF NOT EXISTS loans(
     function findAllLoansRepository(){
         return new Promise((res, rej) =>{
             db.all(`
-                SELECT loans.id, loans.dueDate, users.email, books.title
+                SELECT loans.id, loans.dueDate, users.email, users.username, books.title
                 FROM loans
                 JOIN users ON loans.userId = users.id
                 JOIN books ON loans.bookId = books.id  

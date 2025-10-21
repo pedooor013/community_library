@@ -9,14 +9,14 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-function sendEmail(email, bookTittle, dueDate){
+function sendEmail(email, username, bookTittle, dueDate){
     const mailOptions = {
         from: process.env.EMAIL,
         to: email,
         subject: "Lembrete: Periodo de Emprestimo está acabando",
         html:` <div style="font-family: Arial, sans-serif; color: #333; font-size: 16px;"> 
         <h2>Lembrete da Biblioteca Comunitária</h2>
-        <p>Olá,</p> <p>Este é um lembrete para a devolução do livro "${bookTittle}".</p>
+        <p>Olá, ${username}</p> <p>Este é um lembrete para a devolução do livro "${bookTittle}".</p>
         <p>Data de devolução: ${dueDate}</p>
         <p>Por favor, devolva o livro até a data indicada.</p>
         <p>Obrigado por utilizar nossa biblioteca!</p> 

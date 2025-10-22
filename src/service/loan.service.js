@@ -15,7 +15,7 @@ async function findLoanByIdService(loanId){
     const loan = await loanRepository.findLoanByIdRepostitoy(loanId);
     if(!loan) throw new Error ({ message: "Loan not found"});
     return loan;                                                                                                                                                                                               
-}
+}   
 
 async function deleteLoanService(loanId, userId){
     const loan = await loanRepository.findLoanByIdRepostitoy(loanId);

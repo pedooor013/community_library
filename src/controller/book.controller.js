@@ -34,7 +34,6 @@ async function findBookByIdController(req, res){
 
 async function updateBookController(req, res){
     const updatedBook = req.body;
-    console.log(updatedBook);
     const bookId = req.params.id;
     const userId = req.userId;
 

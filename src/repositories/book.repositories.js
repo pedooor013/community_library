@@ -68,7 +68,6 @@ db.run(`
             query = query.slice(0, -1);
 
             query += " WHERE id = ?";
-            console.log(query)
             values.push(bookId);
 
             db.run(query, values , function (err){

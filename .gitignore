@@ -21,3 +21,5 @@ Thumbs.db
 
 # .NET
 .dotnet/
+
+library_db.sqlite

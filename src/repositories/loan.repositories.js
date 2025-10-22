@@ -46,8 +46,11 @@ db.run(`CREATE TABLE IF NOT EXISTS loans(
     function findLoanByIdRepostitoy(loanId){
         return new Promise((res, rej) =>{
             db.get(`
-                SELECT * FROM loans
-                WHERE id = ?
+                SELECT loans.id, loans.dueDate, users.email, users.username, books.title
+                FROM loans
+                JOIN users ON loans.userId = users.id
+                JOIN books ON loans.bookId = books.id  
+                WHERE loans.id = ?
                 `, [loanId], (err, row) =>{
                     if(err){
                         rej(err)
